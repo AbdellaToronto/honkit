@@ -1,5 +1,5 @@
 import cheerio from "cheerio";
-import Promise from "../../utils/promise";
+import Promise, { forEach } from "../../utils/promise";
 
 /**
  Apply a list of operations to a page and
@@ -13,7 +13,7 @@ function modifyHTML(page, operations) {
     const html = page.getContent();
     const $ = cheerio.load(html);
 
-    return Promise.forEach(operations, (op) => {
+    return forEach(operations, (op) => {
         return op($);
     }).then(() => {
         const resultHTML = $.html();

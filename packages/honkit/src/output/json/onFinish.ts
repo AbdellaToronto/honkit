@@ -26,7 +26,7 @@ function onFinish(output) {
             .readFile(path.resolve(outputRoot, mainLanguage.getID(), "README.json"), "utf8")
 
             // Extend the JSON
-            .then((content) => {
+            .then((content: string) => {
                 const json = JSON.parse(content);
 
                 json.languages = JSONUtils.encodeLanguages(languages);

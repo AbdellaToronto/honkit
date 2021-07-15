@@ -183,7 +183,7 @@ function generateBook(generator, book, options = {}) {
             .then(processOutput.bind(null, generator))
 
             // Log duration and end message
-            .then((output) => {
+            .then((output: any) => {
                 const logger = output.getLogger();
                 const end = Date.now();
                 const duration = (end - start) / 1000;

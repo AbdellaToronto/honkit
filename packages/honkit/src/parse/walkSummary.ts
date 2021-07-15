@@ -1,4 +1,4 @@
-import Promise from "../utils/promise";
+import Promise, { forEach } from "../utils/promise";
 
 /**
  Walk over a list of articles
@@ -8,7 +8,7 @@ import Promise from "../utils/promise";
  @return {Promise}
  */
 function walkArticles(articles, fn) {
-    return Promise.forEach(articles, (article) => {
+    return forEach(articles, (article) => {
         return Promise(fn(article)).then(() => {
             return walkArticles(article.getArticles(), fn);
         });
@@ -26,7 +26,7 @@ function walkArticles(articles, fn) {
 function walkSummary(summary, fn) {
     const parts = summary.getParts();
 
-    return Promise.forEach(parts, (part) => {
+    return forEach(parts, (part) => {
         return walkArticles(part.getArticles(), fn);
     });
 }

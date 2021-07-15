@@ -1,4 +1,4 @@
-import Promise from "../utils/promise";
+import Promise, { reduce } from "../utils/promise";
 import timing from "../utils/timing";
 import Book from "../models/book";
 import parseIgnore from "./parseIgnore";
@@ -28,7 +28,7 @@ function parseMultilingualBook(book) {
     const languages = book.getLanguages();
     const langList = languages.getList();
 
-    return Promise.reduce(
+    return reduce(
         langList,
         (currentBook, lang) => {
             const langID = lang.getID();

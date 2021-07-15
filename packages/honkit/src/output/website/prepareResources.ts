@@ -1,6 +1,6 @@
 import is from "is";
 import Immutable from "immutable";
-import Promise from "../../utils/promise";
+import Promise, { forEach } from "../../utils/promise";
 import Api from "../../api";
 
 /**
@@ -19,7 +19,7 @@ function prepareResources(output) {
 
     let result = Immutable.Map();
 
-    return Promise.forEach(plugins, (plugin) => {
+    return forEach(plugins, (plugin) => {
         const pluginResources = plugin.getResources(type);
 
         return Promise()

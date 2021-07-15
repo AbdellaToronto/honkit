@@ -1,4 +1,4 @@
-import Promise from "../utils/promise";
+import Promise, { forEach } from "../utils/promise";
 
 /**
  * Replace position markers of blocks by body after processing
@@ -37,7 +37,7 @@ function postRender(engine, output) {
 
     const result = replaceBlocks(content, blocks);
 
-    return Promise.forEach(blocks, (block) => {
+    return forEach(blocks, (block) => {
         const post = block.get("post");
 
         if (!post) {

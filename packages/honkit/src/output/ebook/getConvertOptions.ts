@@ -32,13 +32,13 @@ function getConvertOptions(output) {
             "--pubdate": config.getValue("pubdate"),
             "--series": config.getValue("series"),
             "--series-index": config.getValue("seriesIndex"),
-            "--chapter": "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' book-chapter ')]",
-            "--level1-toc":
-                "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' book-chapter-1 ')]",
-            "--level2-toc":
-                "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' book-chapter-2 ')]",
-            "--level3-toc":
-                "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' book-chapter-3 ')]",
+            // "--chapter": "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' book-chapter ')]",
+            // "--level1-toc":
+            //     "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' book-chapter-1 ')]",
+            // "--level2-toc":
+            //     "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' book-chapter-2 ')]",
+            // "--level3-toc":
+            //     "descendant-or-self::*[contains(concat(' ', normalize-space(@class), ' '), ' book-chapter-3 ')]",
             "--max-levels": "1",
             "--no-chapters-in-toc": true,
             "--breadth-first": true,

@@ -1,4 +1,4 @@
-import Promise from "../utils/promise";
+import Promise, { reduce } from "../utils/promise";
 import timing from "../utils/timing";
 import Api from "../api";
 
@@ -39,7 +39,7 @@ function callHook(name, getArgument, handleResult, output) {
         Promise(getArgument(output))
             // Call the hooks in serie
             .then((arg) => {
-                return Promise.reduce(
+                return reduce(
                     plugins,
                     (prev, plugin) => {
                         const hook = plugin.getHook(name);

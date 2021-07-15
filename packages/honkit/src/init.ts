@@ -1,7 +1,7 @@
 import path from "path";
 import createNodeFS from "./fs/node";
 import fs from "./utils/fs";
-import Promise from "./utils/promise";
+import Promise, { forEach } from "./utils/promise";
 import File from "./models/file";
 import Readme from "./models/readme";
 import Book from "./models/book";
@@ -54,7 +54,7 @@ function initBook(rootFolder) {
 
                 // Write pages
                 return (
-                    Promise.forEach(articles, (article) => {
+                    forEach(articles, (article) => {
                         const articlePath = article.getPath();
                         const filePath = articlePath ? path.join(rootFolder, articlePath) : null;
                         if (!filePath) {
@@ -68,7 +68,6 @@ function initBook(rootFolder) {
                             });
                         });
                     })
-
                         // Write summary
                         .then(() => {
                             const filePath = path.join(rootFolder, summaryFilename);

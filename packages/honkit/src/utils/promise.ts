@@ -1,5 +1,6 @@
 import Q from "q";
 import Immutable from "immutable";
+import fs from "fs";
 
 // Debugging for long stack traces
 if (process.env.DEBUG || process.env.CI) {
@@ -42,10 +43,10 @@ function forEach(arr, iter) {
  * Transform an array
  *
  * @param {Array|List} arr
- * @param {Function(value, element, index)}
+ * @param {Function(value, element, index)} iter
  * @return {Promise}
  */
-function serie(arr, iter, base) {
+function serie(arr, iter) {
     return reduce(
         arr,
         (before, item, key) => {
@@ -141,11 +142,6 @@ function wrap(func: Function) {
     };
 }
 
-Q.forEach = forEach;
-Q.reduce = reduce;
-Q.map = map;
-Q.serie = serie;
-Q.some = some;
-Q.wrap = wrap;
 export default Q;
 export { forEach, reduce, map, serie, some, wrap };
+export const readFile = Q.nfbind(fs.readFile);

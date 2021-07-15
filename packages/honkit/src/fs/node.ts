@@ -7,7 +7,7 @@ function fsReadDir(folder) {
     return fs.readdir(folder).then((files) => {
         files = Immutable.List(files);
 
-        return files
+        return (files as any)
             .map((file) => {
                 if (file === "." || file === "..") return;
 

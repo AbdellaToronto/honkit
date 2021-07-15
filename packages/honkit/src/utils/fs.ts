@@ -54,12 +54,12 @@ function fileExists(filename) {
 
 // Generate temporary file
 function genTmpFile(opts) {
-    return Promise.nfcall(tmp.file, opts).get(0);
+    return Promise.nfcall(tmp.file, opts).get("0");
 }
 
 // Generate temporary dir
 function genTmpDir(opts) {
-    return Promise.nfcall(tmp.dir, opts).get(0);
+    return Promise.nfcall(tmp.dir, opts).get("0");
 }
 
 // Download an image

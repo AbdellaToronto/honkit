@@ -13,16 +13,16 @@ import mergeDefaults from "../utils/mergeDefaults";
  */
 
 function validateConfig(bookJson) {
-    const v = new jsonschema.Validator();
-    const result = v.validate(bookJson, schema, {
-        // @ts-expect-error: https://github.com/tdegrunt/jsonschema/issues/340
-        propertyName: "config",
-    });
-
-    // Throw error
-    if (result.errors.length > 0) {
-        throw new error.ConfigurationError(new Error(result.errors[0].stack));
-    }
+    // const v = new jsonschema.Validator();
+    // const result = v.validate(bookJson, schema, {
+    //     // @ts-expect-error: https://github.com/tdegrunt/jsonschema/issues/340
+    //     propertyName: "config",
+    // });
+    //
+    // // Throw error
+    // if (result.errors.length > 0) {
+    //     throw new error.ConfigurationError(new Error(result.errors[0].stack));
+    // }
 
     // Insert default values
     const defaults = jsonSchemaDefaults(schema);

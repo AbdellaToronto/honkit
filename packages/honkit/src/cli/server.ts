@@ -64,7 +64,7 @@ class Server extends events.EventEmitter {
         let pre = Promise();
         port = port || 8004;
 
-        if (that.isRunning()) pre = this.stop();
+        if (that.isRunning()) pre = this.stop() as any;
         return pre.then(() => {
             const d = Promise.defer();
 

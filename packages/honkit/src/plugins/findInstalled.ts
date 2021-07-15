@@ -1,7 +1,7 @@
 import readInstalled from "read-installed";
 import Immutable from "immutable";
 import path from "path";
-import Promise from "../utils/promise";
+import Promise, { serie } from "../utils/promise";
 import fs from "../utils/fs";
 import Plugin from "../models/plugin";
 import PREFIX from "../constants/pluginPrefix";
@@ -70,7 +70,7 @@ function findInstalled(folder) {
             return Promise([]);
         })
         .then((modules) => {
-            return Promise.serie(modules, (module) => {
+            return serie(modules, (module) => {
                 // Not a gitbook-plugin
                 if (!validateId(module)) {
                     return Promise();

@@ -2,7 +2,7 @@ import path from "path";
 import Immutable from "immutable";
 import stream from "stream";
 import File from "./file";
-import Promise from "../utils/promise";
+import Promise, { reduce } from "../utils/promise";
 import error from "../utils/error";
 import PathUtil from "../utils/path";
 import { root } from "@honkit/html/lib/dom";
@@ -73,7 +73,7 @@ class FS extends Immutable.Record({
             const exists = that.get("fsExists");
 
             return exists(filename);
-        });
+        }) as unknown as Promise<boolean>;
     }
 
     /**
@@ -90,7 +90,7 @@ class FS extends Immutable.Record({
             const read = that.get("fsReadFile");
 
             return read(filename);
-        });
+        }) as unknown as Promise<Buffer>;
     }
 
     /**
@@ -99,7 +99,7 @@ class FS extends Immutable.Record({
      */
     readAsString(filename: string, encoding: string = "utf8"): Promise<string> {
         return this.read(filename).then((buf) => {
-            return buf.toString(encoding);
+            return buf.toString(encoding as BufferEncoding);
         });
     }
 
@@ -144,7 +144,7 @@ class FS extends Immutable.Record({
             })
             .then((stat) => {
                 return File.createFromStat(filename, stat);
-            });
+            }) as unknown as Promise<File>;
     }
 
     /**
@@ -194,7 +194,7 @@ class FS extends Immutable.Record({
         dirName = dirName || ".";
 
         return this.readDir(dirName).then((files) => {
-            return Promise.reduce(
+            return reduce(
                 files,
                 (out, file) => {
                     const isDirectory = pathIsFolder(file);
@@ -227,7 +227,7 @@ class FS extends Immutable.Record({
      */
     findFile(dirname: string, filename: string) {
         return this.listFiles(dirname).then((files) => {
-            return files.find((file) => {
+            return files.find((file: string) => {
                 return file.toLowerCase() == filename.toLowerCase();
             });
         });

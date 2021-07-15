@@ -1,4 +1,4 @@
-import Promise from "../utils/promise";
+import Promise, { serie } from "../utils/promise";
 import IGNORE_FILES from "../constants/ignoreFiles";
 
 const DEFAULT_IGNORES = [
@@ -35,7 +35,7 @@ function parseIgnore(book) {
 
     ignore = ignore.add(DEFAULT_IGNORES);
 
-    return Promise.serie(IGNORE_FILES, (filename) => {
+    return serie(IGNORE_FILES, (filename) => {
         return fs.readAsString(filename).then(
             (content) => {
                 ignore = ignore.add(content.toString().split(/\r?\n/));

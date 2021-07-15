@@ -43,7 +43,7 @@ const ConrefsLoader = nunjucks.Loader.extend({
                 return fs
                     .readFile(filepath)
                     .then((source) => {
-                        source = source.toString("utf8");
+                        source = source.toString();
 
                         if (that.transformFn) {
                             return that.transformFn(filepath, source);

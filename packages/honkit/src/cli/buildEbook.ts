@@ -1,6 +1,6 @@
 import path from "path";
 import tmp from "tmp";
-import Promise from "../utils/promise";
+import Promise, { forEach } from "../utils/promise";
 import fs from "../utils/fs";
 import Parse from "../parse";
 import Output from "../output";
@@ -43,7 +43,7 @@ export default function (format) {
                         const languages = book.getLanguages();
 
                         if (book.isMultilingual()) {
-                            return Promise.forEach(languages.getList(), (lang) => {
+                            return forEach(languages.getList(), (lang) => {
                                 const langID = lang.getID();
 
                                 const langOutputFile = path.join(
